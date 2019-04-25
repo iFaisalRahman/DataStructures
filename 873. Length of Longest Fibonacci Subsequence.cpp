@@ -15,7 +15,7 @@
 	[1,11,12], [3,11,14] or [7,11,18].
 
 	Hints:
-	dp[i][j] = length of fibonacci-like subsequence endimg at i,j [last two elements are i,j]
+	dp[i][j] = length of fibonacci-like subsequence ending at i,j [last two elements are i,j]
 	we can use two sum problem to find the sum of two number A[l],A[r] equal to A[i].
 	Then, dp[r][i]=1+dp[l][r];
 	Ans is maximum dp[r][i]
