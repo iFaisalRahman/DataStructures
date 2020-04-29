@@ -43,7 +43,7 @@ int maxProfitHelper(int K, vector<int>& prices)
 		then we don't need consider number of transaction,
 		the problem converted to infinite transaction stock buy/sell problem
 	*/
-	if (K > days >> 2)
+	if (K > days/2)
 	{
 		int curr_sell = 0;
 		int curr_buy = INT_MIN;
