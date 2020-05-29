@@ -1,0 +1,63 @@
+/*
+Given an unsorted integer array, find the smallest missing positive integer.
+
+Example 1:
+  Input: [1,2,0]
+  Output: 3
+
+Example 2:
+  Input: [3,4,-1,1]
+  Output: 2
+*/
+
+int firstMissingPositive(vector<int>& nums) {
+
+  int low=0;
+  int hi=nums.size()-1;
+
+  // Move all non-positive numbers (nums[i]<=0) to the right
+  while(low<hi){     
+      while(low<hi && nums[low]>0){
+          low++;
+      }
+      while(low<hi && nums[hi]<=0){
+          hi--;
+      }
+      if(low!=hi){
+          swap(nums[low], nums[hi]);
+      }
+  }
+  while(hi>=0 && nums[hi]<=0){
+      hi--;
+  }
+
+  // Our search space should be nums[0] to nums[hi].
+
+  // if hi is less than ZERO, that mean our search space length is zero, 
+  // then 1 should be the first missing positive number. 
+  if(hi<0){
+      return 1;
+  }
+
+
+  for(int i=0; i<=hi; i++){
+      int val = abs(nums[i])-1;
+      if(val <= hi && nums[val]>0){
+          nums[val] = - nums[val];    
+      }
+  }
+
+  for(int i=0; i<=hi; i++){
+      if(nums[i]>0){
+          return i+1;
+      }
+  }
+
+  return (hi+2);
+}
+
+void swap(int &x, int &y){
+      int temp = x;
+      x = y;
+      y = temp;
+  }
